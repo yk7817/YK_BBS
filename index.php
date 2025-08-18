@@ -34,7 +34,7 @@
                             <p class="text-rose-600"><?php echo $form->error['text']; ?></p>
                             <?php endif; ?>
                         <dd class="mt-5 text-center">
-                            <input class="w-30 sm:w-48 bg-sky-400 text-blue-50 text-lg py-2 px-5" type="submit" name="post" value="Post">
+                            <input class="w-30 sm:w-48 bg-sky-400 text-blue-50 text-lg py-2 px-5 cursor-pointer" type="submit" name="post" value="Post">
                         </dd>
                     </dl>
                     <input type="hidden" name="token" value="<?php echo $form->h($token);?>">
@@ -43,15 +43,23 @@
                     Post List
                 </h2>
                 <?php foreach($posts_data as $post_data) : ?>
-                    <p class="text-neutral-800 my-1">
-                        No : <?php echo $post_data['id'] ;?>
-                    </p>
-                    <p class="text-neutral-800 my-1">
-                        Name : <?php echo $post_data['name'] ;?>
-                    </p>
-                    <p class="text-neutral-800 my-1">
-                        Post : <?php echo $post_data['text'] ;?>
-                    </p>
+                    <div class="post_list flex justify-between items-center">
+                        <div class="post" data-id="<?php echo $post_data['id']; ?>">
+                            <p class="text-neutral-800 my-1">
+                                No : <?php echo $post_data['id'] ;?>
+                            </p>
+                            <p class="text-neutral-800 my-1">
+                                Name : <?php echo $post_data['name'] ;?>
+                            </p>
+                            <p class="text-neutral-800 my-1">
+                                Post : <?php echo $post_data['text'] ;?>
+                            </p>
+                        </div>
+                        <div class="flex flex-col items-end">
+                            <button class="edit text-sm flex justify-center items-center cursor-pointer block w-10 bg-sky-400 text-blue-50 text-lg py-1 px-2 cursor-pointer">Edit</button>
+                            <button class="delete text-sm flex justify-center items-center cursor-pointer block w-15 bg-red-500 text-blue-50 text-lg py-1 px-2 mt-1 cursor-pointer" data-id="<?php echo $post_data['id']; ?>">Delete</button>
+                        </div>
+                    </div>
                     <hr class="mt-2">
                 <?php endforeach; ?>
             </div>
